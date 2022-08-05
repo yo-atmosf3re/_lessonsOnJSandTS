@@ -1,5 +1,5 @@
 
-import { addNewBooksToUser, makeHairStyle, removeBook, updateBook, upgradeUserLaptop, userHasMoved, userHasMovedOtherHouse, UserType, UserWithBooksType, UserWithLaptopType } from './10_01'
+import { addCompanies, addNewBooksToUser, CompaniesType, makeHairStyle, removeBook, updateBook, updateCompanies, updateCompanyTitle, upgradeUserLaptop, userHasMoved, userHasMovedOtherHouse, UserType, UserWithBooksType, UserWithCompanyType, UserWithLaptopType } from './10_01'
 
 test.skip('reference type test', () => {
    let user: UserType = {
@@ -125,7 +125,7 @@ test.skip('add new books to user', () => {
    expect(user.books.length).toBe(4)
 })
 
-test('remove js books to user', () => {
+test.skip('remove js books to user', () => {
    let user: UserWithLaptopType & UserWithBooksType = {
       name: 'Alex',
       hair: 32,
@@ -144,4 +144,66 @@ test('remove js books to user', () => {
    expect(user.books).not.toBe(movedUser.books)
    expect(movedUser.books[2]).toBe('react')
    expect(user.books.length).toBe(4)
+})
+
+test.skip('companies to user', () => {
+   let user: UserWithLaptopType & UserWithCompanyType = {
+      name: 'Alex',
+      hair: 32,
+      address: {
+         city: 'NN',
+         house: 12,
+      },
+      laptop: {
+         title: 'Asus'
+      },
+      company: [
+         { id: 1, title: 'EPAM' },
+         { id: 2, title: 'Yandex' },
+      ]
+   }
+   const movedUser = addCompanies(user, { id: 3, title: 'Google' })
+
+   expect(user).not.toBe(movedUser)
+   expect(user.company).not.toBe(movedUser.companies)
+   expect(movedUser.companies[2].title).toBe('Google')
+   expect(user.company.length).toBe(2)
+})
+
+test.skip('update companies to user', () => {
+   let user: UserWithLaptopType & UserWithCompanyType = {
+      name: 'Alex',
+      hair: 32,
+      address: {
+         city: 'NN',
+         house: 12,
+      },
+      laptop: {
+         title: 'Asus'
+      },
+      company: [
+         { id: 1, title: 'epam' },
+         { id: 2, title: 'Yandex' },
+      ]
+   }
+   const movedUser = updateCompanies(user, 1, 'EPAM') as UserWithLaptopType & UserWithCompanyType
+
+   expect(user).not.toBe(movedUser)
+   expect(user.company).not.toBe(movedUser.company)
+   expect(movedUser.company[0].title).toBe('EPAM')
+
+})
+
+test('updet companies to user', () => {
+   let companies = {
+      'Alex': [{ id: 1, title: 'Google' }, { id: 2, title: 'Yandex' }],
+      'Michle': [{ id: 1, title: 'Epam' }]
+   }
+
+   const copy: any = updateCompanyTitle(companies, 'Alex', 1, 'Yandex')
+
+   expect(companies['Alex']).toBe(companies['Alex'])
+   expect(copy['Michle']).toBe(companies['Michle'])
+   expect(copy['Alex'][0].title).toBe('Yandex')
+
 })

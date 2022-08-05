@@ -1,4 +1,4 @@
-import { copyFile } from "fs"
+import { title } from "process"
 
 export type UserType = {
    name: string
@@ -16,6 +16,15 @@ export type UserWithLaptopType = UserType & {
 
 export type UserWithBooksType = UserType & {
    books: Array<string>
+}
+
+export type UserWithCompanyType = UserType & {
+   company: Array<CompaniesType>
+}
+
+export type CompaniesType = {
+   id: number,
+   title: string
 }
 
 export function makeHairStyle(u: UserType, power: number) {
@@ -46,4 +55,21 @@ export const updateBook = (u: UserWithLaptopType & UserWithBooksType, oldBook: s
 
 export function removeBook(u: UserWithLaptopType & UserWithBooksType, delBook: string) {
    return { ...u, books: [...u.books.filter(i => i !== delBook)] }
+}
+
+export function addCompanies(u: UserWithLaptopType & UserWithCompanyType, addNewCompanies: { id: number, title: string }) {
+   return { ...u, companies: [...u.company, addNewCompanies] }
+}
+
+export function updateCompanies(u: UserWithCompanyType, newId: number, newTitle: string) {
+   const copy: UserWithCompanyType = {
+      ...u,
+      company: u.company.map(c => c.id === newId ? { ...c, title: newTitle } : c)
+   }
+   return copy;
+}
+
+export let updateCompanyTitle = (c: { [key: string]: Array<CompaniesType> }, userName: string, companyId: number, newTitle: string) => {
+   let companyCopy = { ...c }
+   companyCopy[userName] = c[userName].map(c => c.id === companyId ? { ...c, title: newTitle } : c)
 }
