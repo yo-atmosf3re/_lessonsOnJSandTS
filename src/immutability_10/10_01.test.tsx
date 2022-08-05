@@ -202,7 +202,7 @@ test('updet companies to user', () => {
 
    const copy: any = updateCompanyTitle(companies, 'Alex', 1, 'Yandex')
 
-   expect(companies['Alex']).toBe(companies['Alex'])
+   expect(copy['Alex']).not.toBe(companies['Alex'])
    expect(copy['Michle']).toBe(companies['Michle'])
    expect(copy['Alex'][0].title).toBe('Yandex')
 

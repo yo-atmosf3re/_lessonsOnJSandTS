@@ -73,3 +73,46 @@ export let updateCompanyTitle = (c: { [key: string]: Array<CompaniesType> }, use
    let companyCopy = { ...c }
    companyCopy[userName] = c[userName].map(c => c.id === companyId ? { ...c, title: newTitle } : c)
 }
+
+// 9 Object inside an object -> array -> object ->  object +
+let man6 = {
+   name: 'John',
+   age: 28,
+   mother: {
+      name: "Kate",
+      age: 50,
+      work: {
+         position: "doctor",
+         experience: 15
+      },
+      parents: [
+         {
+            name: "Kevin",
+            age: 80,
+            favoriteDish: {
+               title: "borscht"
+            }
+         },
+         {
+            name: "Jennifer",
+            age: 78,
+            favoriteDish: {
+               title: "sushi"
+            }
+         },
+      ]
+   }
+};
+
+let man6FullCopy = {
+   ...man6,
+   mother: {
+      ...man6.mother,
+      work: {
+         ...man6.mother.work
+      },
+      parents: [
+
+      ]
+   }
+}
