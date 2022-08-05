@@ -1,4 +1,4 @@
-function increaseAge(u: UserType) {
+function hairdresser(u: UserType) {
    u.age++;
 }
 
@@ -15,7 +15,7 @@ test.skip('reference type test', () => {
       age: 23,
    }
 
-   increaseAge(user);
+   hairdresser(user);
 
    expect(user.age).toBe(24)
 
