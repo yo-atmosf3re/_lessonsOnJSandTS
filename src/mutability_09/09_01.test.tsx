@@ -15,7 +15,7 @@ test.skip('reference type test', () => {
       age: 23,
    }
 
-   hairdresser(user);
+   // hairdresser(user);
 
    expect(user.age).toBe(24)
 
