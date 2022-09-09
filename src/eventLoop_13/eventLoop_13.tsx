@@ -2,14 +2,15 @@ import React from 'react'
 
 
 function EventLoopExample() {
-   function foo() {
+   function whileLoop() {
       while (true) {
          console.log(1)
       }
    }
    return (<div style={{ textAlign: 'center', fontSize: '40px' }}>
       Event Loop example!
-      <button onClick={foo}>click</button>
+      <button onClick={whileLoop}>click</button>
+
    </div>);
 }
 
