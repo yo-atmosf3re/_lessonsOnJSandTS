@@ -65,34 +65,6 @@ const OopClassSolidExample = () => {
    console.log(u1.hello())
    console.log(u2.hello())
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
    return (<div>
       Object oriented programming, SOLID and classes example...
    </div>);
