@@ -1,10 +1,9 @@
-import PrototypeExample from './prototype_16/PrototypeExample';
-
+import { Cop } from './classes_object_prototypes_17/Cop';
 
 function App() {
   return (
     <div style={{ textAlign: 'center', fontSize: '40px' }}>
-      <PrototypeExample />
+      <Cop />
     </div>
   );
 }

@@ -9,8 +9,6 @@ const userPrototype = {
    },
 }
 
-
-
 const alex = {
    name: 'Alex',
    age: 16,
@@ -28,6 +26,14 @@ const hanna = {
 alex.showName()
 alex.showAge()
 hanna.showName()
+
+function User(name) {
+   this.name = name
+}
+
+const user = new User('Alex')
+
+user.toString()
 
 const PrototypeExample = () => {
    return (
