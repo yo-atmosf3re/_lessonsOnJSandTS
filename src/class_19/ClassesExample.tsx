@@ -109,6 +109,79 @@ const newUser = new Admin('Alex')
 newUser.sayHello('Alex')
 
 
+const user1 = {
+   name: 'Martin',
+   age: 23,
+   [Symbol.toPrimitive](hint: string) {
+      if (hint === 'number') return 42
+      if (hint === 'string') return 'Hello, my friend!'
+      if (hint === 'default') return null
+   }
+}
+
+const someUser1 = {
+   age: 23,
+   [Symbol.toPrimitive](hint: string) {
+      if (hint === 'number') return this.age
+   }
+}
+const someUser2 = {
+   age: 32,
+   [Symbol.toPrimitive](hint: string) {
+      if (hint === 'number') return this.age
+   }
+}
+
+console.log(someUser1 < someUser2)
+
+console.log(+user1)
+console.log(user1.toString() + 'Jon')
+// @ts-ignore
+console.log(user1 + 10)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 export const ClassesExample = () => {
    return (
       <div>
